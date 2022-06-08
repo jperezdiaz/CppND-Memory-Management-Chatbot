@@ -52,6 +52,7 @@ ChatBot::ChatBot(ChatBot &&other) noexcept
       _rootNode{other._rootNode}, _chatLogic{other._chatLogic} {
 
   std::cout << "ChatBot Move Constructor" << std::endl;
+  _chatLogic->SetChatbotHandle(this);
   other._image = NULL;
   other._currentNode = nullptr;
   other._rootNode = nullptr;
@@ -83,6 +84,7 @@ ChatBot &ChatBot::operator=(ChatBot &&other) noexcept {
   other._rootNode = nullptr;
 
   _chatLogic = other._chatLogic;
+  _chatLogic->SetChatbotHandle(this);
   other._chatLogic = nullptr;
 
   return *this;
